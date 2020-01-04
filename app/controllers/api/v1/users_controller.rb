@@ -1,8 +1,4 @@
-class UsersController < ApplicationController
-    def new
-        @user = User.new
-    end
-
+class Api::V1::UsersController < ApplicationController
     def create
         @user = User.new(params[:user])
         if @user.save
@@ -10,4 +6,5 @@ class UsersController < ApplicationController
         else
             render json: {user: @user, message: 'not done'}
         end
+    end
 end
