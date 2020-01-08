@@ -22,3 +22,5 @@ activities.each do |activity|
     end
 end
 
+
+
