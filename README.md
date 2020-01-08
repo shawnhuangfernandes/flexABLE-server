@@ -84,6 +84,6 @@ In order to launch this project, do the following:
 > rails s
 
 - Verify that the server is running on localhost:3000
-- Follow the instructions for the front end (github: )
+- Follow the instructions for the front end (github: https://github.com/shawnhuangfernandes/flexABLE-client)
 
 
