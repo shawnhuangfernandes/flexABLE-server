@@ -7,7 +7,6 @@ class Api::V1::WorkoutsController < ApplicationController
     def create
         @workout = Workout.new(user_id: params[:user_id], exercise_id: params[:exercise_id], workout_date: Date.new(params[:year], params[:month], params[:day]))
         if @workout.save
-            byebug
             render json: {workout: @workout}
         else
             render json: {workout: @workout, message: 'not done'}
