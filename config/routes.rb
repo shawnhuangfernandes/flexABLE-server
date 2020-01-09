@@ -1,14 +1,13 @@
-Rails.application.routes.draw do
+# Contains all the endpoints of the api (urls that produce json)
 
-  resources :workouts
-  namespace :api do
-    namespace :v1 do
-      resources :users
-      resources :exercises
-      resources :workouts
-      post '/login', to: 'auth#login'
-      get '/user_is_authed', to: 'auth#user_is_authed'
+Rails.application.routes.draw do
+  namespace :api do # namespace to organize all api resources under /api
+    namespace :v1 do # namespace to organize all api resources under /api/v1
+      resources :users # all user routes are /api/v1/users~
+      resources :exercises # all exercise routes are /api/v1/exercises~
+      resources :workouts # all workout routes are /api/v1/workouts~
+      post '/login', to: 'auth#login' # specific route for authenticaticating a login
+      get '/user_is_authed', to: 'auth#user_is_authed' # specific route for authorizing an active user
     end
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

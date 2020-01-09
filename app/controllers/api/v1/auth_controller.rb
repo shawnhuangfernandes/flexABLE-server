@@ -2,6 +2,7 @@ class Api::V1::AuthController < ApplicationController
   # This action assigns a token to a user and renders that token (along with the user info) back to the front end 
   # This is supposed to be used on a new login 
   def login
+    byebug
       @user = User.find_by(username: params[:username])
       if @user && @user.authenticate(params[:password])
         token = issue_token(@user)

@@ -1,18 +1,21 @@
-
+# default database
 default: &default
   adapter: postgresql
   encoding: unicode
 
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
+# development database
 development:
   <<: *default
   database: flexable_development
 
+# test database
 test:
   <<: *default
   database: flexable_test
 
+# production database
 production:
   <<: *default
   database: flexable_production
