@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :workouts # all workout routes are /api/v1/workouts~
       post '/login', to: 'auth#login' # specific route for authenticaticating a login
       get '/user_is_authed', to: 'auth#user_is_authed' # specific route for authorizing an active user
+      post '/week_workout', to: 'workouts#workouts_for_the_week'
     end
   end
 end

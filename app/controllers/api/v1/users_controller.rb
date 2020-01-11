@@ -2,7 +2,6 @@ class Api::V1::UsersController < ApplicationController
     # Creates a user on request and provides the user information and token back on success
     def create
         @user = User.new(user_params)
-        byebug
         if @user.save
             token = encode_token({user_id: @user.id})
             render json: {user: @user, jwt: token, success: 'Successfully Created Account'}

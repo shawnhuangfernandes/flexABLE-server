@@ -13,4 +13,8 @@ class Api::V1::WorkoutsController < ApplicationController
         end
     end
 
+    def workouts_for_the_week
+        render json: {message: "found the garbage"}
+    end
+
 end
