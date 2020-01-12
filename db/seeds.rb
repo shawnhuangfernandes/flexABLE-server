@@ -35,8 +35,8 @@ User.create(username: "Hi", password: "pass", first_name: "Shawn", last_name: "H
 counter = 8
 
 while counter <= 13 do
-    Workout.create(user_id: 1, exercise_id: 1, workout_date: Date.new(2020, 1, counter))
-    Workout.create(user_id: 1, exercise_id: 2, workout_date: Date.new(2020, 1, counter))
+    Workout.create(user_id: 1, exercise_id: 1, workout_date: Date.new(2020, 1, counter), completed: false, description: "10 minutes")
+    Workout.create(user_id: 1, exercise_id: 2, workout_date: Date.new(2020, 1, counter), completed: false, description: "20 65-yard shots")
     counter += 1
 end
 

@@ -4,6 +4,8 @@ class CreateWorkouts < ActiveRecord::Migration[6.0]
       t.date :workout_date
       t.integer :user_id
       t.integer :exercise_id
+      t.boolean :completed
+      t.string :description
 
       t.timestamps
     end

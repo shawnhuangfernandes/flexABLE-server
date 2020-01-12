@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 2020_01_08_001627) do
     t.date "workout_date"
     t.integer "user_id"
     t.integer "exercise_id"
+    t.boolean "completed"
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
