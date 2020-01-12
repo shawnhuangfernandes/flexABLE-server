@@ -14,7 +14,8 @@ class Api::V1::WorkoutsController < ApplicationController
     end
 
     def workouts_for_the_week
-        render json: {message: "found the garbage"}
+        @this_weeks_workouts = Workout.workouts_of_the_week(params[:user_id], params[:day], params[:month], params[:year])
+        render json: @this_weeks_workouts.to_json
     end
 
 end
