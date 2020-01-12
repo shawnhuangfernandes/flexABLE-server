@@ -32,11 +32,11 @@ end
 
 User.create(username: "Hi", password: "pass", first_name: "Shawn", last_name: "Huangnandes")
 
-counter = 1
+counter = 8
 
-while counter <= 31 do
-    Workout.create(user_id: 1, exercise_id: 1, workout_date: Date.new(2020, 12, counter))
-    Workout.create(user_id: 1, exercise_id: 2, workout_date: Date.new(2020, 12, counter))
+while counter <= 13 do
+    Workout.create(user_id: 1, exercise_id: 1, workout_date: Date.new(2020, 1, counter))
+    Workout.create(user_id: 1, exercise_id: 2, workout_date: Date.new(2020, 1, counter))
     counter += 1
 end
 
