@@ -21,7 +21,7 @@ class Workout < ApplicationRecord
     def self.find_by_user_and_date(user_id, current_date)
         workouts_of_user = Workout.where(user_id: user_id)  # find all the workouts created by the user
         # select first occurrence of workout of user
-        workouts_of_user.select do |workout|
+        day_specific_exercises = workouts_of_user.select do |workout|
             workout.workout_date == current_date
         end.map do |workout|
             {
@@ -29,5 +29,12 @@ class Workout < ApplicationRecord
                 workout: workout
             }
         end
+  
+        return {
+            date: current_date,
+            day_workout_info: day_specific_exercises
+        }
+        
+        
     end
 end
