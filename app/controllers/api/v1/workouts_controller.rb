@@ -13,6 +13,12 @@ class Api::V1::WorkoutsController < ApplicationController
         end
     end
 
+    def update
+        @workout = Workout.find(params[:id])
+        @workout.update(description: params[:new_description])
+        render json: @workout
+    end
+
     def workouts_for_the_week
         @this_weeks_workouts = Workout.workouts_of_the_week(params[:user_id], params[:day], params[:month], params[:year])
         render json: @this_weeks_workouts.to_json
