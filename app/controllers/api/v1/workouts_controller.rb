@@ -5,9 +5,12 @@ class Api::V1::WorkoutsController < ApplicationController
     end
 
     def create
-        @workout = Workout.new(user_id: params[:user_id], exercise_id: params[:exercise_id], workout_date: Date.new(params[:year], params[:month], params[:day], completed: false))
+        @workout = Workout.new(user_id: params[:user_id], description: params[:new_description], exercise_id: params[:exercise_id], workout_date: Date.new(params[:year], params[:month], params[:day]), completed: false)
         if @workout.save
-            render json: {workout: @workout}
+            render json: {
+                exercise_name: Exercise.find(@workout.exercise_id).name,
+                workout: @workout
+            }
         else
             render json: {workout: @workout, message: 'not done'}
         end
@@ -17,6 +20,14 @@ class Api::V1::WorkoutsController < ApplicationController
         @workout = Workout.find(params[:id])
         @workout.update(description: params[:new_description])
         render json: @workout
+    end
+
+    def destroy
+        @workout = Workout.find(params[:id])
+        @workout.destroy
+        render json: {
+            message: 'successfully destroyed'
+        }
     end
 
     def workouts_for_the_week
