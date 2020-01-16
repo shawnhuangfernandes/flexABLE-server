@@ -7,10 +7,7 @@ class Api::V1::WorkoutsController < ApplicationController
     def create
         @workout = Workout.new(user_id: params[:user_id], description: params[:new_description], exercise_id: params[:exercise_id], workout_date: Date.new(params[:year], params[:month], params[:day]), completed: false)
         if @workout.save
-            render json: {
-                exercise_name: Exercise.find(@workout.exercise_id).name,
-                workout: @workout
-            }
+            render json: @workout
         else
             render json: {workout: @workout, message: 'not done'}
         end
