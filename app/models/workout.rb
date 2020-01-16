@@ -10,31 +10,19 @@ class Workout < ApplicationRecord
     def self.workouts_of_the_week(user_id, day, month, year)
         workoutsArray=Array.new(7) # first create a workout array of size 7 to hold the workouts of the week
         today = Date.new(year, month, day) # get today's date
-        $current_date = today - today.wday # then lets start from the beginning of the week (Monday is the start)
-        workoutsArray.map.with_index do |val, index| # go through each day of the week
-            workout_search_result = find_by_user_and_date(user_id, $current_date) # return the workout created by the user on that day
-            $current_date = Date.new($current_date.year, $current_date.month, $current_date.day) + 1 # increment the current day
-            workout_search_result
+        current_date = today - today.wday # then lets start from the beginning of the week (Monday is the start)
+        workoutsArray.map.with_index do |val, index| # go through each day of the week and RETURN the mapped version of it
+            tracked_date = current_date + index
+            byebug
+            workout_search_result = find_by_user_and_date(user_id, tracked_date) # find the workouts created by the user on the current day of the week
         end
     end
 
     def self.find_by_user_and_date(user_id, current_date)
-        workouts_of_user = Workout.where(user_id: user_id)  # find all the workouts created by the user
-        # select first occurrence of workout of user
-        day_specific_exercises = workouts_of_user.select do |workout|
-            workout.workout_date == current_date
-        end.map do |workout|
-            {
-                exercise_name: workout.exercise.name,
-                workout: workout
-            }
+        return workouts_of_user = Workout.where(user_id: user_id).filter do |workout|
+            workout.workout_date.day == current_date.day &&
+            workout.workout_date.month == current_date.month &&
+            workout.workout_date.year == current_date.year         
         end
-  
-        return {
-            date: current_date,
-            day_workout_info: day_specific_exercises
-        }
-        
-        
     end
 end
