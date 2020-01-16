@@ -18,7 +18,8 @@ class Api::V1::WorkoutsController < ApplicationController
 
     def update
         @workout = Workout.find(params[:id])
-        @workout.update(description: params[:new_description])
+        updatedAttributeName = params.keys[1]
+        @workout.update(updatedAttributeName => params[updatedAttributeName])
         render json: @workout
     end
 
@@ -34,5 +35,7 @@ class Api::V1::WorkoutsController < ApplicationController
         @this_weeks_workouts = Workout.workouts_of_the_week(params[:user_id], params[:day], params[:month], params[:year])
         render json: @this_weeks_workouts.to_json
     end
+
+    
 
 end
