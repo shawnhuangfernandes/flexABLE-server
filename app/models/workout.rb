@@ -13,7 +13,6 @@ class Workout < ApplicationRecord
         current_date = today - today.wday # then lets start from the beginning of the week (Monday is the start)
         workoutsArray.map.with_index do |val, index| # go through each day of the week and RETURN the mapped version of it
             tracked_date = current_date + index
-            byebug
             workout_search_result = find_by_user_and_date(user_id, tracked_date) # find the workouts created by the user on the current day of the week
         end
     end

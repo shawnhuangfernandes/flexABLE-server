@@ -5,7 +5,7 @@ class Api::V1::WorkoutsController < ApplicationController
     end
 
     def create
-        @workout = Workout.new(user_id: params[:user_id], description: params[:new_description], exercise_id: params[:exercise_id], workout_date: Date.new(params[:year], params[:month], params[:day]), completed: false)
+        @workout = Workout.new(workout_params)
         if @workout.save
             render json: @workout
         else
@@ -15,8 +15,7 @@ class Api::V1::WorkoutsController < ApplicationController
 
     def update
         @workout = Workout.find(params[:id])
-        updatedAttributeName = params.keys[1]
-        @workout.update(updatedAttributeName => params[updatedAttributeName])
+        @workout.update(workout_params)
         render json: @workout
     end
 
@@ -33,6 +32,10 @@ class Api::V1::WorkoutsController < ApplicationController
         render json: @this_weeks_workouts.to_json
     end
 
-    
+    private
+
+    def workout_params
+        params.require(:workout).permit(:user_id, :exercise_id, :year, :month, :day, :completed, :description)
+    end
 
 end
