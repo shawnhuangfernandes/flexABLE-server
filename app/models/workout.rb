@@ -19,6 +19,7 @@ class Workout < ApplicationRecord
 
     def self.find_by_user_and_date(user_id, current_date)
         return workouts_of_user = Workout.where(user_id: user_id).filter do |workout|
+            byebug
             workout.workout_date.day == current_date.day &&
             workout.workout_date.month == current_date.month &&
             workout.workout_date.year == current_date.year         
