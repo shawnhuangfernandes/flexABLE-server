@@ -1,5 +1,6 @@
 class Api::V1::WorkoutsController < ApplicationController
     def index
+
         @workouts = Workout.all
         render json: @workouts
     end
@@ -25,11 +26,6 @@ class Api::V1::WorkoutsController < ApplicationController
         render json: {
             message: 'successfully destroyed'
         }
-    end
-
-    def workouts_for_the_week
-        @this_weeks_workouts = Workout.workouts_of_the_week(params[:user_id], params[:date])
-        render json: @this_weeks_workouts.to_json
     end
 
     private
