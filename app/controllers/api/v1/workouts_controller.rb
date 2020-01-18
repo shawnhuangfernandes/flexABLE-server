@@ -28,7 +28,7 @@ class Api::V1::WorkoutsController < ApplicationController
     end
 
     def workouts_for_the_week
-        @this_weeks_workouts = Workout.workouts_of_the_week(params[:user_id], params[:day], params[:month], params[:year])
+        @this_weeks_workouts = Workout.workouts_of_the_week(params[:user_id], params[:date])
         render json: @this_weeks_workouts.to_json
     end
 

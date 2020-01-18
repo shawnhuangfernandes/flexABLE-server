@@ -7,9 +7,9 @@ class Workout < ApplicationRecord
     validates :user_id, presence: true # validation to make sure user is specified
     validates :exercise_id, presence: true # validation to make sure exercise is specified
 
-    def self.workouts_of_the_week(user_id, day, month, year)
+    def self.workouts_of_the_week(user_id, date)
         workoutsArray=Array.new(7) # first create a workout array of size 7 to hold the workouts of the week
-        today = Date.new(year, month, day) # get today's date
+        today = Date.new(date[:year], date[:month], date[:day]) # get today's date
         current_date = today - today.wday # then lets start from the beginning of the week (Monday is the start)
         workoutsArray.map.with_index do |val, index| # go through each day of the week and RETURN the mapped version of it
             tracked_date = current_date + index
@@ -19,7 +19,6 @@ class Workout < ApplicationRecord
 
     def self.find_by_user_and_date(user_id, current_date)
         return workouts_of_user = Workout.where(user_id: user_id).filter do |workout|
-            byebug
             workout.workout_date.day == current_date.day &&
             workout.workout_date.month == current_date.month &&
             workout.workout_date.year == current_date.year         
