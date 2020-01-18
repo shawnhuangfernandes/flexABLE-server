@@ -15,6 +15,7 @@ class Api::V1::WorkoutsController < ApplicationController
     end
 
     def update
+        byebug
         @workout = Workout.find(params[:id])
         @workout.update(workout_params)
         render json: @workout
@@ -31,7 +32,7 @@ class Api::V1::WorkoutsController < ApplicationController
     private
 
     def workout_params
-        params.require(:workout).permit(:user_id, :exercise_id, :year, :month, :day, :completed, :description)
+        params.require(:workout).permit(:id, :user_id, :exercise_id, :year, :month, :day, :completed, :description, :workout_date)
     end
 
 end
