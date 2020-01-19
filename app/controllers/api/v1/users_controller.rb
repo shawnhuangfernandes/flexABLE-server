@@ -11,6 +11,16 @@ class Api::V1::UsersController < ApplicationController
         end
     end
 
+    def destroy
+        byebug
+        @user = User.find(params[:id])
+        @user.destroy
+        byebug
+        render json: {
+            message: "Deleted User!"
+        }
+    end
+
     # Helper Methods
     private
 

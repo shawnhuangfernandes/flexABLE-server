@@ -15,7 +15,6 @@ class Api::V1::WorkoutsController < ApplicationController
     end
 
     def update
-        byebug
         @workout = Workout.find(params[:id])
         @workout.update(workout_params)
         render json: @workout
