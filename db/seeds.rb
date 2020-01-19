@@ -26,7 +26,7 @@ exercises = doc_exercises.css('.jd-details')
 # if the activities have not been marked as deprecated, create an exercise instance of type 'activity'
 exercises.each do |exercise|
     if !exercise.css('strong').text.include? "deprecated"
-        Exercise.create(name: exercise.css('strong').text, description: exercise.css('p').text.gsub(/\s+/, ' '), category: "Exercise")  
+        Exercise.create(name: exercise.css('strong').text, description: exercise.css('p').text.gsub(/\s+/, ' '), category: "Arms")  
     end
 end
 

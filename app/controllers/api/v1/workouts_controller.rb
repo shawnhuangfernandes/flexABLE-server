@@ -32,7 +32,7 @@ class Api::V1::WorkoutsController < ApplicationController
     private
 
     def workout_params
-        params.require(:workout).permit(:id, :user_id, :exercise_id, :year, :month, :day, :completed, :description, :workout_date)
+        params.require(:workout).permit(:id, :user_id, :exercise_id, :completed, :description, :workout_date)
     end
 
 end
