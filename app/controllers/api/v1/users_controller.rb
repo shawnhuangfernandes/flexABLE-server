@@ -4,22 +4,28 @@ class Api::V1::UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             token = encode_token({user_id: @user.id})
-            render json: {user: @user, jwt: token, success: 'Successfully Created Account'}
+            render json: {id: @user.id, username: @user.username, first_name: @user.first_name, last_name: @user.last_name, jwt: token}
         else
             puts @user.errors.full_messages
-            render json: {user: @user, failure: 'Could Not Create User'}
+            render json: {user: @user, error: 'Could Not Create User'}
         end
     end
 
-    def destroy
+    def update
         byebug
         @user = User.find(params[:id])
+        @user.update(first_name: params[:first_name], last_name: params[:last_name], username: params[:username])
+        render json: @user
+    end
+
+    def destroy
+        @user = User.find(params[:id])
         @user.destroy
-        byebug
         render json: {
             message: "Deleted User!"
         }
     end
+
 
     # Helper Methods
     private
